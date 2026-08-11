@@ -1,0 +1,1786 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+  --color-bg: #030303;
+  --color-white: #FFFFFF;
+  --color-gold: #C9A24B;
+  --font-headline: 'Bebas Neue', sans-serif;
+  --font-body: 'Quantico', 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-white);
+}
+
+/* ==========================================================================
+   SMOOTH FULL-SCREEN SNAP CONTAINER
+   ========================================================================= */
+.snap-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  /* Hide scrollbar for Chrome, Safari, Firefox & Edge */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  overflow: hidden;
+}
+
+.section.screen-3 {
+  background-image: url("asset/Page5/back-grwen.png");
+  background-size: cover;
+  background-position: center;
+  background-color: #000000;
+  z-index: 1;
+}
+
+/* FIXED GLOBAL BACKGROUND */
+.layer-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   INTRO OVERLAY
+   ========================================================================= */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+#intro-overlay video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hidden { opacity: 0; pointer-events: none; }
+.intro-done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* ==========================================================================
+   SCREEN 1
+   ========================================================================= */
+.viewport-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nav-brand {
+  position: absolute;
+  left: 4.79vw;
+  top: 5.6vh;
+  width: 64px;
+  height: 62px;
+  z-index: 10;
+  display: block;
+}
+
+.nav-brand img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav-controls {
+  position: absolute;
+  top: 5.2vh;
+  right: 4.79vw;
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.83vw, 16px);
+  z-index: 10;
+}
+
+.glass-pill, .glass-circle {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 6px rgba(0, 0, 0, 0.35), 0 8px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.glass-pill:hover, .glass-circle:hover {
+  background: linear-gradient(180deg, rgba(201, 162, 75, 0.28) 0%, rgba(201, 162, 75, 0.10) 100%);
+  border-color: var(--color-gold);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 18px rgba(201, 162, 75, 0.45), 0 8px 22px rgba(0, 0, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+.text-pill { padding: 0.75rem 2.2rem; border-radius: 50px; }
+
+.glass-circle {
+  width: clamp(32px, 2.29vw, 44px);
+  height: clamp(32px, 2.29vw, 44px);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-grid::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.icon-menu::before {
+  content: "";
+  width: 15px;
+  height: 13px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.mobile-menu-panel {
+  display: none;
+}
+
+.eye-3d-container {
+  position: absolute;
+  left: 21vw;
+  top: 22.69vh;
+  width: 24.27vw;
+  height: 55.09vh;
+  z-index: 1;
+  will-change: transform;
+}
+
+.eye-3d-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(20px 30px 40px rgba(0, 0, 0, 0.95));
+  pointer-events: none;
+}
+
+.typography-group {
+  position: absolute;
+  left: 4.79vw;
+  top: 19vh;
+  width: 38vw;
+  height: 55vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  line-height: 0.78;
+  user-select: none;
+  pointer-events: none;
+}
+
+.typography-group h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(90px, 13vw, 245px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.text-white { color: var(--color-white); text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); }
+.text-gold { color: var(--color-gold); text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); }
+
+.layer-footer {
+  position: absolute;
+  left: 4.79vw;
+  top: 82vh;
+  display: flex;
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  z-index: 10;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.footer-link {
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: inherit;
+  transition: color 0.25s ease;
+}
+
+.footer-link:hover {
+  color: var(--color-gold);
+}
+
+.layer-pillars {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.pillar-item { position: absolute; top: 0.28vh; width: 5.73vw; height: 100vh; }
+.pillar-item img { width: 100%; height: 100%; object-fit: cover; }
+
+.p-1 { left: 59.43vw; animation: float-up 6s ease-in-out infinite; }
+.p-2 { left: 66.51vw; animation: float-down 7s ease-in-out infinite; }
+.p-3-active { left: 73.59vw; z-index: 4; animation: float-up 6.5s ease-in-out infinite; }
+.p-4 { left: 80.68vw; animation: float-down 7.5s ease-in-out infinite; }
+.p-5 { left: 87.76vw; animation: float-up 8s ease-in-out infinite; }
+
+@keyframes float-up { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes float-down { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
+
+.active-pillar-glow {
+  position: absolute;
+  top: 48%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15.63vw; height: 15.63vw;
+  background: radial-gradient(circle, rgba(228, 194, 90, 0.6) 0%, rgba(228, 194, 90, 0.15) 50%, transparent 80%);
+  filter: blur(45px);
+  z-index: -1;
+}
+
+/* Mobile-only horizontal pillar bands (G1/G2/G3) — hidden on desktop,
+   revealed and positioned at the mobile breakpoint further below. */
+.layer-pillars-mobile { display: none; }
+.pillar-mobile { position: absolute; pointer-events: none; }
+.pillar-mobile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.layer-pillars-mobile-s2 { display: none; }
+
+
+/* ==========================================================================
+   SCREEN 2 — NO BACKGROUND CARD / LARGE TRANSLUCENT TEXT
+   ========================================================================= */
+.screen-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.artwork-frame {
+  position: relative;
+  display: block;
+  width: 85vw;
+  max-width: 1600px;
+  height: 75vh;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  text-decoration: none;
+  color: inherit;
+  
+  /* --- CHANGE HERE: Hide default cursor --- */
+  cursor: none; 
+}
+
+.artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* MOUSE-FOLLOWING OVERLAY (CARD/BOX REMOVED) */
+.hover-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.hover-text-overlay.active {
+  opacity: 1;
+}
+
+/* BIG TRANSLUCENT "GENRA" TEXT ONLY */
+.genra-label {
+  font-family: var(--font-headline);
+  font-size: clamp(5rem, 10vw, 11rem);
+  letter-spacing: 0.08em;
+  color: #2b619e;
+  
+  /* --- CHANGE HERE: Adjusted opacity and added glow --- */
+  opacity: 0.55; 
+  user-select: none;
+  
+  /* White glow effect */
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.3);
+    
+  display: inline-block;
+  white-space: nowrap;
+}
+/* ==========================================================================
+   SCREEN 3 — ABOUT ME
+   ========================================================================= */
+.eye-3d-container-s3 {
+  position: absolute;
+  left: -3vw;
+  top: 16vh;
+  width: 24vw;
+  height: 58vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.eye-3d-container-s3 .eye-3d-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(20px 30px 40px rgba(0, 0, 0, 0.95));
+}
+
+.typography-group-s3 {
+  position: absolute;
+  left: 9vw;
+  top: 16vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.82;
+  user-select: none;
+}
+
+.typography-group-s3 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(70px, 9vw, 165px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.about-copy {
+  position: absolute;
+  left: 39vw;
+  top: 43vh;
+  width: 34vw;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.about-copy p {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(14px, 1vw, 18px);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #d8d8d8;
+  text-transform: uppercase;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin-bottom: 1.4em;
+}
+
+.about-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.pillar-item-s3 {
+  position: absolute;
+  right: 2vw;
+  top: 0;
+  width: 5.73vw;
+  height: 100%;
+  z-index: 3;
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.pillar-item-s3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(-20px); }
+  50% { transform: translateY(20px); }
+}
+
+/* ==========================================================================
+   SCREEN 8 — STAFF & FOUNDERS
+   ========================================================================= */
+.section.screen-8 {
+  background-color: #000000;
+  z-index: 1;
+}
+
+.s8-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55vh;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(201, 162, 75, 0.35) 0%, rgba(201, 162, 75, 0.14) 35%, rgba(0, 0, 0, 0) 70%);
+}
+
+.typography-group-s8 {
+  position: absolute;
+  left: 4.79vw;
+  top: 12vh;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.82;
+  user-select: none;
+}
+
+.typography-group-s8 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(60px, 7.2vw, 130px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.s8-copy {
+  position: absolute;
+  left: 4.79vw;
+  top: 31vh;
+  width: 26vw;
+  z-index: 5;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(12px, 0.85vw, 15px);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: #d8d8d8;
+  text-transform: uppercase;
+}
+
+.s8-carousel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6vh;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  padding: 0 3.5vw;
+}
+
+.s8-arrow {
+  flex: 0 0 auto;
+  width: clamp(38px, 3vw, 50px);
+  height: clamp(38px, 3vw, 50px);
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 8px 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.s8-arrow:hover {
+  background: linear-gradient(180deg, rgba(201, 162, 75, 0.28) 0%, rgba(201, 162, 75, 0.10) 100%);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 18px rgba(201, 162, 75, 0.45);
+}
+
+.s8-arrow span {
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid var(--color-white);
+  border-right: 2px solid var(--color-white);
+}
+
+.s8-arrow-prev span { transform: rotate(-135deg) translate(1px, -1px); }
+.s8-arrow-next span { transform: rotate(45deg) translate(-1px, -1px); }
+
+.s8-track {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 1.2vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1vh 0.2vw 1.4vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.s8-track::-webkit-scrollbar { display: none; }
+
+.s8-card {
+  position: relative;
+  z-index: 5;
+  flex: 0 0 auto;
+  width: clamp(170px, 13.5vw, 210px);
+  height: clamp(260px, 38vh, 340px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 20px;
+  overflow: visible;
+  padding: 0.6vw;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 60%);
+  transform: scale(1);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.s8-card:hover {
+  z-index: 6;
+  transform: scale(1.045) translateY(-4px);
+}
+
+.s8-figure {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.s8-platform {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 78%;
+  height: 14%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(201, 162, 75, 0.65) 0%, rgba(201, 162, 75, 0.28) 45%, rgba(201, 162, 75, 0) 75%);
+  filter: blur(1px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.s8-card:hover .s8-platform {
+  transform: translateX(-50%) scale(1.12);
+}
+
+.s8-pharaoh {
+  position: relative;
+  width: 82%;
+  margin-bottom: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.s8-crown {
+  width: 44%;
+  margin-bottom: -6%;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.s8-face-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+  background: linear-gradient(160deg, #2a2a2e 0%, #111113 100%);
+  border: 3px solid rgba(201, 162, 75, 0.75);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.s8-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  display: block;
+}
+
+.s8-initials {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-headline);
+  font-size: clamp(18px, 1.6vw, 26px);
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.no-photo .s8-photo { display: none; }
+.no-photo .s8-initials { display: flex; }
+
+.s8-collar {
+  width: 78%;
+  margin-top: -8%;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.s8-card:hover .s8-face-photo {
+  border-color: rgba(201, 162, 75, 1);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 162, 75, 0.4);
+}
+
+.s8-info {
+  flex: 0 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 0.4vw 0.4vw 0;
+}
+
+.s8-name {
+  font-family: var(--font-headline);
+  font-size: clamp(14px, 1vw, 18px);
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: 0.2vw;
+}
+
+.s8-role {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(9px, 0.58vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .typography-group-s8 { top: 8vh; }
+  .s8-copy { top: 24vh; width: 90vw; }
+  .s8-carousel { bottom: 5vh; padding: 0 2.5vw; gap: 0.6vw; }
+  .s8-card { width: 150px; height: 210px; }
+}
+
+/* ==========================================================================
+   SCREEN 4 — CLOSING / FOOTER
+   ========================================================================= */
+.section.screen-4 {
+  background-color: #000000;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.s4-pillar {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 5.73vw;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.s4-pillar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s4-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.4vh;
+}
+
+.s4-logo {
+  display: block;
+  width: 44px;
+  height: 42px;
+  margin-bottom: 1vh;
+}
+
+.s4-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.s4-heading {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-headline);
+  font-size: clamp(48px, 6.5vw, 110px);
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.s4-gap { width: 2vw; }
+
+.s4-socials {
+  display: flex;
+  gap: 14px;
+  margin-top: 0.5vh;
+}
+
+.s4-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #000000;
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+}
+
+.s4-icon:hover {
+  transform: translateY(-3px);
+  background: #111111;
+  border-color: var(--color-gold);
+}
+
+.s4-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.s4-tagline {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: #d8d8d8;
+  text-transform: uppercase;
+  margin-top: 1vh;
+}
+/* ==========================================================================
+   SCREEN 5 — GLOBAL REACH
+   ========================================================================= */
+.section.screen-5 {
+  background-color: #000000;
+  z-index: 1;
+}
+
+.s5-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+@keyframes stars-twinkle {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+.typography-group-s5 {
+  position: absolute;
+  left: 12vw;
+  top: 33vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.82;
+  user-select: none;
+}
+
+.typography-group-s5 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(70px, 8.5vw, 160px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.s5-globe {
+  position: absolute;
+  left: 18.49vw;   /* 355/1920 */
+  top: 15vh;       /* 162/1080 */
+  width: 65vw;     /* 1248/1920 */
+  height: 77vh;    /* 832/1080 */
+  z-index: 1;
+  animation: globe-zoom 8s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.s5-globe img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.8));
+  animation: globe-flow 10s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes globe-flow {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(1.2%, -1.5%); }
+  50%  { transform: translate(0, -2.5%); }
+  75%  { transform: translate(-1.2%, -1.5%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes globe-zoom {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+.s5-list {
+  position: absolute;
+  right: 20vw;
+  top: 39vh;
+  z-index: 2;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.s5-list li {
+  font-family: var(--font-headline);
+  font-size: clamp(30px, 1vw, 19px);
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+.s5-list li::before {
+  content: "• ";
+  color: var(--color-gold);
+}
+
+/* ==========================================================================
+   SCREEN 6 — PACKAGE OFFERS
+   ========================================================================= */
+.section.screen-6 {
+  background-color: #000000;
+  z-index: 1;
+}
+
+.eye-3d-container-s6 {
+  position: absolute;
+  left: 6vw;
+  top: 26vh;
+  width: 15vw;
+  height: 35vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.eye-3d-container-s6 .eye-3d-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(8px 12px 20px rgba(0, 0, 0, 0.9));
+}
+
+.typography-group-s6 {
+  position: absolute;
+  left: 12vw;
+  top: 30vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.85;
+  user-select: none;
+}
+
+.typography-group-s6 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(60px, 7.5vw, 140px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.s6-copy {
+  position: absolute;
+  left: 12vw;
+  top: 68vh;
+  width: 26vw;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(13px, 0.95vw, 17px);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #d8d8d8;
+  text-transform: uppercase;
+}
+
+.layer-pillars-s6 {
+  position: absolute;
+  left: 50vw;
+  right: 2.5vw;
+  top: 0;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.pillar-item-s6 {
+  position: relative;
+  width: 5.73vw;
+  height: 100%;
+  animation: float-up 6.5s ease-in-out infinite;
+}
+
+/* direct child only — a descendant selector here also caught the logo
+   <img> inside .ps6-logo and forced object-fit: cover on it */
+.pillar-item-s6 > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* horizontal band artwork — desktop keeps the vertical pillars, the
+   mobile breakpoint swaps to these */
+.ps6-band { display: none; }
+
+.ps6-logo {
+  position: absolute;
+  left: 50%;
+  top: 57.5vh;
+  transform: translate(-50%, -50%);
+  width: 8vw;
+  max-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.ps6-logo:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.ps6-logo.is-active img {
+  filter: drop-shadow(0 0 18px rgba(201, 162, 75, 0.85));
+}
+
+.ps6-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
+  transition: filter 0.25s ease;
+}
+
+/* ==========================================================================
+   SCREEN 7 — VIDEO SHOWCASE
+   ========================================================================= */
+.section.screen-7 {
+  background-color: #000000;
+  z-index: 1;
+}
+
+.s7-glow {
+  position: absolute;
+  left: 0;
+  top: 29.07vh;   /* 314 / 1080 */
+  width: 100vw;
+  height: 63.54vw; /* 1220 / 1920, keeps the asset's native aspect ratio */
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 30%, #000 60%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 30%, #000 60%);
+}
+
+.s7-glow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.typography-group-s7 {
+  position: absolute;
+  left: 4.79vw;
+  top: 28vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.78;
+  user-select: none;
+}
+
+.typography-group-s7 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(90px, 13vw, 245px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.video-box-s7 {
+  position: absolute;
+  left: 34vw;
+  top: 26vh;
+  width: 58vw;
+  height: 58vh;
+  z-index: 2;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 75, 0.7);
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 30%, rgba(0, 0, 0, 0.4) 60%, #0a0a0a 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 20px rgba(0, 0, 0, 0.6), 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.video-box-s7 video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-box-s7::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  pointer-events: none;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+}
+/* ==========================================================================
+   RESPONSIVE — MOBILE (<= 768px)
+   ========================================================================= */
+@media (max-width: 768px) {
+
+  .snap-container {
+    scroll-snap-type: y proximity;
+  }
+
+  /* NAV — compact for mobile, never wraps/clips */
+  .nav-brand {
+    left: 4vw;
+    top: 3vh;
+    width: 40px;
+    height: 38px;
+  }
+
+  .nav-controls {
+    top: 3vh;
+    right: 3vw;
+    max-width: 74vw;
+    gap: 4px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .nav-controls::-webkit-scrollbar { display: none; }
+
+  .text-pill {
+    padding: 0.4rem 0.75rem;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .glass-pill, .glass-circle {
+    font-size: 0.5rem;
+  }
+
+  .glass-circle {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(3vh + 40px);
+    right: 3vw;
+    width: 50vw;
+    max-width: 220px;
+    z-index: 20;
+    padding: 0.6rem;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(20, 18, 12, 0.92) 0%, rgba(10, 9, 6, 0.96) 100%);
+    border: 1px solid rgba(201, 162, 75, 0.35);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .mobile-menu-panel.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-menu-link {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.15);
+  }
+
+  .mobile-menu-link:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-menu-link:active {
+    color: var(--color-gold);
+  }
+
+  /* SCREEN 1 */
+  .eye-3d-container {
+    left: 43.52vw;
+    top: 17.29vh;
+    width: 48.89vw;
+    height: 35.16vh;
+  }
+
+  .typography-group {
+    left: 8.52vw;
+    top: 17.29vh;
+    width: 50.56vw;
+    height: 34.27vh;
+  }
+
+  .layer-pillars { display: none; }
+
+  .layer-pillars-mobile {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
+  .pm-g1 {
+    left: 0;
+    top: 71.56vh;
+    width: 100vw;
+    height: 5.73vh;
+    z-index: 1;
+  }
+
+  .pm-g2 {
+    left: -6.48vw;
+    top: 69.00vh;
+    width: 116.02vw;
+    height: 27.24vh;
+    z-index: 2;
+  }
+
+  .pm-g3 {
+    left: 0;
+    top: 89.25vh;
+    width: 100vw;
+    height: 5.73vh;
+    z-index: 1;
+  }
+
+  .layer-footer {
+    left: 4vw;
+    top: 55vh;      /* adjust to move it up/down */
+    gap: 1rem;      /* adjust spacing between the 3 links */
+    font-size: 0.7rem;
+  }
+
+  /* SCREEN 2 */
+  .screen-2 {
+    display: block;
+  }
+
+  .artwork-frame {
+    position: absolute;
+    left: 5.19vw;
+    top: 35.47vh;
+    width: 89.63vw;
+    height: 33.28vh;
+    max-width: none;
+  }
+
+  .layer-pillars-mobile-s2 {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
+  .pm-g4 {
+    left: 0;
+    top: 9.635vh;
+    width: 100vw;
+    height: 5.73vh;
+    z-index: 2;
+  }
+
+  .pm-g5 {
+    left: 0;
+    top: 88.91vh;
+    width: 100vw;
+    height: 5.73vh;
+    z-index: 2;
+  }
+
+  /* SCREEN 3 */
+  .eye-3d-container-s3 {
+    left: 6.20vw;
+    top: 15vh;
+    width: 43.15vw;
+    height: 30.99vh;
+  }
+
+  .typography-group-s3 {
+    left: 35.74vw;
+    top: 15vh;
+    width: 44.54vw;
+  }
+
+  .typography-group-s3 h1 {
+    font-size: clamp(90px, 13vw, 245px);
+  }
+
+  .about-copy {
+    left: 3.20vw;
+    top: 48vh;
+    width: 81vw;
+  }
+
+  .about-copy p {
+    font-size: 11px;
+    margin-bottom: 0.8em;
+  }
+
+  .pillar-item-s3 {
+    left: 58.70vw;
+    right: auto;
+    top: 0;
+    width: 75.83vw;
+    height: 102.24vh;
+  }
+
+  /* SCREEN 5 — OUR KINGDOM
+     Desktop splits heading left / list right. Mobile is one centred
+     column: OUR above the globe, KINGDOM below it, list at the foot. */
+  .typography-group-s5 {
+    left: 0;
+    right: 0;
+    top: 18vh;
+    height: 68vh;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .typography-group-s5 h1 {
+    font-size: clamp(56px, 17vw, 96px);
+  }
+
+  /* centred with left/right, not translateX — the globe-zoom keyframes
+     own `transform` and would drop any centring put there */
+  /* map.png is 3:2 with the sphere filling only the middle ~55%, so the
+     box has to run wider than the viewport for the sphere itself to read
+     at the ~62vw the design calls for. The section clips the overhang. */
+  .s5-globe {
+    left: -5vw;
+    top: 34vh;
+    width: 110vw;
+    height: 34vh;
+  }
+
+  .s5-list {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 3.5vh;
+    align-items: center;
+    gap: 0.5vh;
+  }
+
+  .s5-list li {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  /* SCREEN 6 — PACKAGE OFFERS
+     The 4 vertical pillars become 4 full-width horizontal bands stacked
+     down the lower half, each with its logo centred on top. */
+  .eye-3d-container-s6 {
+    left: 2vw;
+    top: 13vh;
+    width: 34vw;
+    height: 20vh;
+  }
+
+  .typography-group-s6 {
+    left: 16vw;
+    top: 13vh;
+  }
+
+  .typography-group-s6 h1 {
+    font-size: clamp(46px, 14vw, 90px);
+  }
+
+  .s6-copy {
+    left: 8vw;
+    top: 33vh;
+    width: 84vw;
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .layer-pillars-s6 {
+    left: 0;
+    right: 0;
+    top: 54vh;
+    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 4vh;
+  }
+
+  .pillar-item-s6 {
+    width: 100%;
+    height: 7.4vh;
+    animation: none;
+  }
+
+  /* :not() keeps this from also hiding the band, which is a direct
+     child <img> too and would otherwise lose on specificity */
+  .pillar-item-s6 > img:not(.ps6-band) { display: none; }
+
+  .ps6-band {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Figma stacks these Clash → GEN X → Sonic → Empire; the DOM order is
+     Clash → Sonic → GEN X → Empire. All four need an explicit order —
+     leaving any at the default 0 floats it to the top of the column. */
+  .ps6-1 { order: 1; }
+  .ps6-3 { order: 2; }
+  .ps6-2 { order: 3; }
+  .ps6-4 { order: 4; }
+
+  /* logos vary in aspect ratio, so size them by height against the band */
+  .ps6-logo {
+    top: 50%;
+    width: auto;
+    max-width: 40vw;
+    height: 9vh;
+  }
+
+  .ps6-logo img {
+    width: auto;
+    height: 100%;
+  }
+
+  /* SCREEN 7 — VIDEO SHOWCASE */
+  .typography-group-s7 {
+    left: 8vw;
+    top: 17vh;
+  }
+
+  .typography-group-s7 h1 {
+    font-size: clamp(56px, 19vw, 110px);
+  }
+
+  .video-box-s7 {
+    left: 9.5vw;
+    top: 54vh;
+    width: 81vw;
+    height: 26vh;
+    border-radius: 16px;
+  }
+
+  .video-box-s7::after {
+    border-radius: 16px;
+  }
+
+  /* height tracks the asset's native ratio so object-fit: cover has
+     nothing to crop — cropping lands on the hottest part of the gradient
+     and turns the fade into a solid gold block */
+  .s7-glow {
+    top: auto;
+    bottom: 0;
+    height: 63.54vw;
+  }
+
+  /* SCREEN 8 — STAFF
+     The <=900px rule above already shrinks the cards; this trims the
+     heading/copy so they clear the carousel on a phone. */
+  .typography-group-s8 h1 {
+    font-size: clamp(46px, 14vw, 90px);
+  }
+
+  .s8-copy {
+    top: 27vh;
+    width: 84vw;
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .s8-carousel {
+    bottom: 6vh;
+    padding: 0 2vw;
+    gap: 1.5vw;
+  }
+
+  .s8-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .s8-card {
+    width: 132px;
+    height: 200px;
+  }
+
+  .s8-track {
+    gap: 3vw;
+  }
+
+  /* SCREEN 4 — REACH US */
+  .s4-pillar {
+    width: 16vw;
+  }
+
+  .s4-content {
+    gap: 1.6vh;
+  }
+
+  .s4-logo {
+    width: 34px;
+    height: 32px;
+    margin-bottom: 0;
+  }
+
+  .s4-heading {
+    font-size: clamp(44px, 15vw, 88px);
+  }
+
+  .s4-gap { width: 3vw; }
+
+  .s4-socials {
+    gap: 8px;
+    margin-top: 0;
+  }
+
+  .s4-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .s4-icon img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .s4-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    margin-top: 0.5vh;
+  }
+
+}
+
+/* ==========================================================================
+   MOBILE VIEWPORT HEIGHT
+   Mobile browsers report 100vh as the *tallest* viewport (address bar
+   retracted), so every 100vh section overflows while the bar is showing
+   and the snap points drift. dvh tracks the visible height instead.
+   ========================================================================= */
+@supports (height: 100dvh) {
+  @media (max-width: 900px) {
+    .snap-container,
+    .section,
+    .layer-background,
+    #intro-overlay {
+      height: 100dvh;
+    }
+  }
+}
+
+/* ==========================================================================
+   TOUCH INPUT
+   Screen 2 hides the cursor for the mouse-following GENRA label. On a
+   touch device there is no cursor to follow and no hover to trigger it,
+   so restore a normal tap affordance.
+   ========================================================================= */
+@media (hover: none) {
+  .artwork-frame {
+    cursor: pointer;
+  }
+
+  .hover-text-overlay {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE (<= 480px)
+   ========================================================================= */
+@media (max-width: 480px) {
+
+  /* SCREEN 1 */
+  .layer-footer {
+    gap: 0.7rem;
+    font-size: 0.6rem;
+  }
+
+  /* SCREEN 3 */
+  .about-copy p {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  /* SCREEN 5 */
+  .s5-list li { font-size: 10px; }
+
+  /* SCREEN 6 */
+  .s6-copy {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+
+  .layer-pillars-s6 { gap: 2.6vh; }
+
+  .ps6-logo { width: 26vw; }
+
+  /* SCREEN 8 */
+  .s8-copy {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+
+  .s8-card {
+    width: 118px;
+    height: 178px;
+  }
+
+  /* SCREEN 4 */
+  .s4-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .s4-icon img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .s4-tagline { font-size: 0.55rem; }
+}
+
+/* ==========================================================================
+   LANDSCAPE PHONE
+   Sections are ~400px tall here, so the vh-based vertical rhythm used
+   above collapses. Pull headings up, shrink type, drop the decorative
+   layers that have no room.
+   ========================================================================= */
+@media (max-width: 900px) and (orientation: landscape) {
+
+  .typography-group h1,
+  .typography-group-s3 h1,
+  .typography-group-s7 h1 {
+    font-size: clamp(40px, 9vw, 70px);
+  }
+
+  .typography-group-s5 h1,
+  .typography-group-s6 h1,
+  .typography-group-s8 h1 {
+    font-size: clamp(34px, 7vw, 58px);
+  }
+
+  .layer-footer { top: 86vh; }
+
+  /* SCREEN 5 */
+  .typography-group-s5 {
+    left: 6vw;
+    right: auto;
+    top: 34vh;
+    height: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .s5-globe {
+    left: 32vw;
+    top: 14vh;
+    width: 36vw;
+    height: 72vh;
+  }
+
+  .s5-list {
+    left: auto;
+    right: 6vw;
+    top: 36vh;
+    bottom: auto;
+    align-items: flex-end;
+  }
+
+  /* SCREEN 6 — no room for 4 stacked bands; go back to vertical pillars */
+  .eye-3d-container-s6 {
+    left: 1vw;
+    top: 24vh;
+    width: 20vw;
+    height: 42vh;
+  }
+
+  .typography-group-s6 { left: 12vw; top: 24vh; }
+
+  .s6-copy {
+    left: 12vw;
+    top: 62vh;
+    width: 34vw;
+    font-size: 9px;
+  }
+
+  .layer-pillars-s6 {
+    left: 52vw;
+    right: 2vw;
+    top: 0;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .pillar-item-s6 {
+    width: 8vw;
+    height: 100%;
+  }
+
+  .pillar-item-s6 > img:not(.ps6-band) { display: block; }
+  .ps6-band { display: none; }
+  .ps6-1, .ps6-2, .ps6-3, .ps6-4 { order: 0; }
+
+  .ps6-logo {
+    width: 11vw;
+    height: auto;
+  }
+
+  .ps6-logo img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* SCREEN 7 */
+  .video-box-s7 {
+    left: 40vw;
+    top: 18vh;
+    width: 55vw;
+    height: 62vh;
+  }
+
+  .typography-group-s7 { top: 22vh; }
+
+  /* SCREEN 8 — stacked heading + carousel won't both fit, so the heading
+     goes to a single row below the nav and the cards shrink to clear it */
+  .s8-copy { display: none; }
+
+  .typography-group-s8 {
+    top: 22vh;
+    flex-direction: row;
+    gap: 0.25em;
+  }
+
+  .typography-group-s8 h1 {
+    font-size: clamp(22px, 4.5vw, 36px);
+  }
+
+  .s8-carousel { bottom: 3vh; }
+
+  .s8-card {
+    width: 100px;
+    height: 132px;
+  }
+
+  /* SCREEN 4 */
+  .s4-heading { font-size: clamp(36px, 9vw, 64px); }
+
+  .s4-content { gap: 1vh; }
+
+  .s4-icon { width: 26px; height: 26px; }
+
+  .s4-icon img { width: 14px; height: 14px; }
+}
