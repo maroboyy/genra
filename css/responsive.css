@@ -1,0 +1,137 @@
+/* ==========================================================================
+   RESPONSIVE OVERRIDES
+   Loaded last so rules here win. Fill in per breakpoint as you adapt
+   each screen for tablet/mobile. Structure mirrors the screen1-7.css
+   files so it's easy to find where a given screen's overrides live.
+   ========================================================================= */
+
+/* ---------- TABLET (<= 1024px) ---------- */
+@media (max-width: 1024px) {
+
+  /* SCREEN 1 */
+
+
+  /* SCREEN 2 */
+
+
+  /* SCREEN 3 */
+
+
+  /* SCREEN 4 */
+
+
+  /* SCREEN 5 */
+
+
+  /* SCREEN 6 */
+
+
+  /* SCREEN 7 */
+
+}
+
+/* ---------- MOBILE (<= 768px) ---------- */
+@media (max-width: 768px) {
+
+  /* Base / nav */
+  .snap-container {
+    scroll-snap-type: y proximity; /* proximity plays nicer with mobile momentum scroll */
+  }
+
+  /* SCREEN 1 */
+  .eye-3d-container {
+    left: 43.52vw;
+    top: 17.29vh;
+    width: 48.89vw;
+    height: 35.16vh;
+  }
+
+  .typography-group {
+    left: 8.52vw;
+    top: 17.29vh;
+    width: 50.56vw;
+    height: 34.27vh;
+  }
+
+  /* desktop's 5 vertical pillars are replaced by 3 horizontal bands on mobile */
+  .layer-pillars { display: none; }
+
+  .layer-pillars-mobile {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
+  .pm-g1 {
+    left: 0;
+    top: 71.56vh;
+    width: 100vw;
+    height: 5.73vh;
+    z-index: 1;
+  }
+
+  .pm-g2 {
+    left: -6.48vw;
+    top: 69.38vh;
+    width: 116.02vw;
+    height: 27.24vh;
+    z-index: 2;
+  }
+
+  .pm-g3 {
+    left: 0;
+    top: 56.25vh;
+    width: 100vw;
+    height: 5.73vh;
+    z-index: 1;
+  }
+
+  /* SCREEN 2 */
+
+
+  /* SCREEN 3 */
+
+
+  /* SCREEN 4 */
+
+
+  /* SCREEN 5 */
+
+
+  /* SCREEN 6 */
+
+
+  /* SCREEN 7 */
+
+}
+
+/* ---------- SMALL MOBILE (<= 480px) ---------- */
+@media (max-width: 480px) {
+
+  /* SCREEN 1 */
+
+
+  /* SCREEN 2 */
+
+
+  /* SCREEN 3 */
+
+
+  /* SCREEN 4 */
+
+
+  /* SCREEN 5 */
+
+
+  /* SCREEN 6 */
+
+
+  /* SCREEN 7 */
+
+}
+
+/* ---------- LANDSCAPE MOBILE ---------- */
+@media (max-width: 900px) and (orientation: landscape) {
+
+}

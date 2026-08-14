@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+  --color-bg: #030303;
+  --color-white: #FFFFFF;
+  --color-gold: #C9A24B;
+  --font-headline: 'Bebas Neue', sans-serif;
+  --font-body: 'Quantico', 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-white);
+}
+
+/* ==========================================================================
+   SMOOTH FULL-SCREEN SNAP CONTAINER
+   ========================================================================= */
+.snap-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  /* Hide scrollbar for Chrome, Safari, Firefox & Edge */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* FIXED GLOBAL BACKGROUND */
+.layer-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   INTRO OVERLAY
+   ========================================================================= */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+#intro-overlay video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hidden { opacity: 0; pointer-events: none; }
+.intro-done { opacity: 0; visibility: hidden; pointer-events: none; }

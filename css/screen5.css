@@ -1,0 +1,100 @@
+/* ==========================================================================
+   SCREEN 5 — GLOBAL REACH
+   ========================================================================= */
+.section.screen-5 {
+  background-color: #000000;
+  z-index: 1;
+}
+
+.s5-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+@keyframes stars-twinkle {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+.typography-group-s5 {
+  position: absolute;
+  left: 12vw;
+  top: 33vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.82;
+  user-select: none;
+}
+
+.typography-group-s5 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(70px, 8.5vw, 160px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.s5-globe {
+  position: absolute;
+  left: 18.49vw;   /* 355/1920 */
+  top: 15vh;       /* 162/1080 */
+  width: 65vw;     /* 1248/1920 */
+  height: 77vh;    /* 832/1080 */
+  z-index: 1;
+  animation: globe-zoom 8s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.s5-globe img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.8));
+  animation: globe-flow 10s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes globe-flow {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(1.2%, -1.5%); }
+  50%  { transform: translate(0, -2.5%); }
+  75%  { transform: translate(-1.2%, -1.5%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes globe-zoom {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+.s5-list {
+  position: absolute;
+  right: 20vw;
+  top: 39vh;
+  z-index: 2;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.s5-list li {
+  font-family: var(--font-headline);
+  font-size: clamp(30px, 1vw, 19px);
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+.s5-list li::before {
+  content: "• ";
+  color: var(--color-gold);
+}
+

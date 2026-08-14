@@ -1,0 +1,75 @@
+/* ==========================================================================
+   SCREEN 7 — VIDEO SHOWCASE
+   ========================================================================= */
+.section.screen-7 {
+  background-color: #000000;
+  z-index: 1;
+}
+
+.s7-glow {
+  position: absolute;
+  left: 0;
+  top: 29.07vh;   /* 314 / 1080 */
+  width: 100vw;
+  height: 63.54vw; /* 1220 / 1920, keeps the asset's native aspect ratio */
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 30%, #000 60%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 30%, #000 60%);
+}
+
+.s7-glow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.typography-group-s7 {
+  position: absolute;
+  left: 4.79vw;
+  top: 28vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.78;
+  user-select: none;
+}
+
+.typography-group-s7 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(90px, 13vw, 245px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.video-box-s7 {
+  position: absolute;
+  left: 34vw;
+  top: 26vh;
+  width: 58vw;
+  height: 58vh;
+  z-index: 2;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 75, 0.7);
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 30%, rgba(0, 0, 0, 0.4) 60%, #0a0a0a 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 20px rgba(0, 0, 0, 0.6), 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.video-box-s7 video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-box-s7::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  pointer-events: none;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+}

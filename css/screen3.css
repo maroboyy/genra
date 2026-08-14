@@ -1,0 +1,81 @@
+/* ==========================================================================
+   SCREEN 3 — ABOUT ME
+   ========================================================================= */
+.section.screen-3 {
+  background-image: url("asset/back-grwen.png");
+  background-size: cover;
+  background-position: center;
+  background-color: #000000;
+  z-index: 1;
+}
+
+.eye-3d-container-s3 {
+  position: absolute;
+  left: -3vw;
+  top: 16vh;
+  width: 24vw;
+  height: 58vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.eye-3d-container-s3 .eye-3d-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(20px 30px 40px rgba(0, 0, 0, 0.95));
+}
+
+.typography-group-s3 {
+  position: absolute;
+  left: 9vw;
+  top: 16vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.82;
+  user-select: none;
+}
+
+.typography-group-s3 h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(70px, 9vw, 165px);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.about-copy {
+  position: absolute;
+  left: 39vw;
+  top: 43vh;
+  width: 34vw;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(14px, 1vw, 18px);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #d8d8d8;
+  text-transform: uppercase;
+}
+
+.pillar-item-s3 {
+  position: absolute;
+  right: 2vw;
+  top: 0;
+  width: 5.73vw;
+  height: 100%;
+  z-index: 3;
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.pillar-item-s3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(-20px); }
+  50% { transform: translateY(20px); }
+}
