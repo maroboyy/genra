@@ -6,12 +6,65 @@
   --color-gold: #C9A24B;
   --font-headline: 'Bebas Neue', sans-serif;
   --font-body: 'Quantico', 'Inter', sans-serif;
+
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+
+html {
+  /* Safari inflates text in landscape unless this is pinned */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  /* kills the grey flash iOS paints over every tapped link/button */
+  -webkit-tap-highlight-color: transparent;
+  /* the gold-on-black type renders heavy on retina without this */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  /* iOS restyles form controls with its own chrome otherwise */
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+}
+
+/* Safari <16 has no `scroll-snap-stop`, and momentum scrolling in older
+   iOS needs this to feel native rather than sticky. Harmless elsewhere. */
+.snap-container,
+.s8-track,
+.nav-controls {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Respect the user's motion setting — several layers here float and pulse
+   forever, which is exactly what this setting exists to stop. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 html, body {
@@ -48,7 +101,9 @@ html, body {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   position: relative;
+
   overflow: hidden;
+  overflow: clip;
 }
 
 .section.screen-3 {
@@ -169,15 +224,6 @@ html, body {
   align-items: center;
 }
 
-.icon-grid::before {
-  content: "";
-  width: 13px;
-  height: 13px;
-  background: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z'/%3E%3C/svg%3E") no-repeat center / contain;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z'/%3E%3C/svg%3E") no-repeat center / contain;
-}
-
 .icon-menu::before {
   content: "";
   width: 15px;
@@ -187,6 +233,8 @@ html, body {
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
+
+.icon-menu,
 .mobile-menu-panel {
   display: none;
 }
@@ -220,6 +268,7 @@ html, body {
   flex-direction: column;
   justify-content: flex-start;
   line-height: 0.78;
+  -webkit-user-select: none;
   user-select: none;
   pointer-events: none;
 }
@@ -353,6 +402,7 @@ html, body {
   
   /* --- CHANGE HERE: Adjusted opacity and added glow --- */
   opacity: 0.55; 
+  -webkit-user-select: none;
   user-select: none;
   
   /* White glow effect */
@@ -392,6 +442,7 @@ html, body {
   display: flex;
   flex-direction: column;
   line-height: 0.82;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -468,20 +519,28 @@ html, body {
   background: radial-gradient(60% 100% at 50% 100%, rgba(201, 162, 75, 0.35) 0%, rgba(201, 162, 75, 0.14) 35%, rgba(0, 0, 0, 0) 70%);
 }
 
+
+.section.screen-8 {
+  --s8-head-top: 12vh;
+  --s8-head-size: clamp(60px, 7.2vw, 130px);
+  --s8-head-gap: 4vh;
+}
+
 .typography-group-s8 {
   position: absolute;
   left: 4.79vw;
-  top: 12vh;
+  top: var(--s8-head-top);
   z-index: 5;
   display: flex;
   flex-direction: column;
   line-height: 0.82;
+  -webkit-user-select: none;
   user-select: none;
 }
 
 .typography-group-s8 h1 {
   font-family: var(--font-headline);
-  font-size: clamp(60px, 7.2vw, 130px);
+  font-size: var(--s8-head-size);
   text-transform: uppercase;
   font-weight: 400;
 }
@@ -489,7 +548,7 @@ html, body {
 .s8-copy {
   position: absolute;
   left: 4.79vw;
-  top: 31vh;
+  top: calc(var(--s8-head-top) + (1.64 * var(--s8-head-size)) + var(--s8-head-gap));
   width: 26vw;
   z-index: 5;
   font-family: var(--font-body);
@@ -694,14 +753,23 @@ html, body {
   margin-bottom: 0.2vw;
 }
 
+
 .s8-role {
-  display: block;
   font-family: var(--font-body);
   font-size: clamp(9px, 0.58vw, 11px);
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--color-gold);
   text-transform: uppercase;
+  line-height: 1.35;
+
+
+  min-height: 2.7em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {
@@ -846,6 +914,7 @@ html, body {
   display: flex;
   flex-direction: column;
   line-height: 0.82;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -947,6 +1016,7 @@ html, body {
   display: flex;
   flex-direction: column;
   line-height: 0.85;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1073,6 +1143,7 @@ html, body {
   display: flex;
   flex-direction: column;
   line-height: 0.78;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1117,8 +1188,16 @@ html, body {
    ========================================================================= */
 @media (max-width: 768px) {
 
+
   .snap-container {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
+    touch-action: pan-x;
+    overscroll-behavior-y: contain;
+  }
+
+  /* the carousel keeps its own horizontal panning */
+  .s8-track {
+    touch-action: pan-x;
   }
 
   /* NAV — compact for mobile, never wraps/clips */
@@ -1157,8 +1236,13 @@ html, body {
     flex: 0 0 auto;
   }
 
+  /* the pill row gives way to the burger */
   .nav-links {
     display: none;
+  }
+
+  .icon-menu {
+    display: flex;
   }
 
   .mobile-menu-panel {
@@ -1352,11 +1436,7 @@ html, body {
     font-size: clamp(56px, 17vw, 96px);
   }
 
-  /* centred with left/right, not translateX — the globe-zoom keyframes
-     own `transform` and would drop any centring put there */
-  /* map.png is 3:2 with the sphere filling only the middle ~55%, so the
-     box has to run wider than the viewport for the sphere itself to read
-     at the ~62vw the design calls for. The section clips the overhang. */
+
   .s5-globe {
     left: -5vw;
     top: 34vh;
@@ -1378,9 +1458,7 @@ html, body {
     letter-spacing: 0.08em;
   }
 
-  /* SCREEN 6 — PACKAGE OFFERS
-     The 4 vertical pillars become 4 full-width horizontal bands stacked
-     down the lower half, each with its logo centred on top. */
+
   .eye-3d-container-s6 {
     left: 2vw;
     top: 13vh;
@@ -1433,9 +1511,7 @@ html, body {
     object-fit: cover;
   }
 
-  /* Figma stacks these Clash → GEN X → Sonic → Empire; the DOM order is
-     Clash → Sonic → GEN X → Empire. All four need an explicit order —
-     leaving any at the default 0 floats it to the top of the column. */
+
   .ps6-1 { order: 1; }
   .ps6-3 { order: 2; }
   .ps6-2 { order: 3; }
@@ -1476,18 +1552,14 @@ html, body {
     border-radius: 16px;
   }
 
-  /* height tracks the asset's native ratio so object-fit: cover has
-     nothing to crop — cropping lands on the hottest part of the gradient
-     and turns the fade into a solid gold block */
+
   .s7-glow {
     top: auto;
     bottom: 0;
     height: 63.54vw;
   }
 
-  /* SCREEN 8 — STAFF
-     The <=900px rule above already shrinks the cards; this trims the
-     heading/copy so they clear the carousel on a phone. */
+
   .typography-group-s8 h1 {
     font-size: clamp(46px, 14vw, 90px);
   }
@@ -1500,24 +1572,43 @@ html, body {
   }
 
   .s8-carousel {
-    bottom: 6vh;
+    top: 35vh;                                    /* claims the dead space */
+    bottom: calc(4vh + var(--safe-bottom));
     padding: 0 2vw;
     gap: 1.5vw;
+    align-items: stretch;
   }
 
+  /* back to Apple's 44px minimum tap target — 32px was under it */
   .s8-arrow {
-    width: 32px;
-    height: 32px;
-  }
-
-  .s8-card {
-    width: 132px;
-    height: 200px;
+    width: 40px;
+    height: 40px;
+    align-self: center;
   }
 
   .s8-track {
-    gap: 3vw;
+    --s8-gap: 3vw;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 1fr);
+    /* exactly two whole columns in view, never a sliced card */
+    grid-auto-columns: calc((100% - var(--s8-gap)) / 2);
+    gap: var(--s8-gap);
+    height: 100%;
+    padding: 0;
   }
+
+  /* the grid cell owns the size now */
+  .s8-card {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .s8-name { font-size: 13px; }
+  .s8-role { font-size: 8.5px; }
 
   /* SCREEN 4 — REACH US */
   .s4-pillar {
@@ -1563,12 +1654,7 @@ html, body {
 
 }
 
-/* ==========================================================================
-   MOBILE VIEWPORT HEIGHT
-   Mobile browsers report 100vh as the *tallest* viewport (address bar
-   retracted), so every 100vh section overflows while the bar is showing
-   and the snap points drift. dvh tracks the visible height instead.
-   ========================================================================= */
+
 @supports (height: 100dvh) {
   @media (max-width: 900px) {
     .snap-container,
@@ -1580,12 +1666,7 @@ html, body {
   }
 }
 
-/* ==========================================================================
-   TOUCH INPUT
-   Screen 2 hides the cursor for the mouse-following GENRA label. On a
-   touch device there is no cursor to follow and no hover to trigger it,
-   so restore a normal tap affordance.
-   ========================================================================= */
+
 @media (hover: none) {
   .artwork-frame {
     cursor: pointer;
@@ -1593,6 +1674,57 @@ html, body {
 
   .hover-text-overlay {
     display: none;
+  }
+
+
+  .glass-pill:hover,
+  .glass-circle:hover,
+  .s4-icon:hover {
+    transform: none;              /* no resting transform to preserve */
+  }
+
+  .s8-card:hover {
+    transform: scale(1);          /* matches .s8-card's resting state */
+  }
+
+  .ps6-logo:hover {
+    transform: translate(-50%, -50%);   /* keeps the logo centred */
+  }
+
+  .s8-card:hover .s8-platform {
+    transform: translateX(-50%);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .nav-brand {
+    top: calc(3vh + var(--safe-top));
+    left: calc(4vw + var(--safe-left));
+  }
+
+  .nav-controls {
+    top: calc(3vh + var(--safe-top));
+    right: calc(3vw + var(--safe-right));
+  }
+
+  .mobile-menu-panel {
+    top: calc(3vh + var(--safe-top) + 40px);
+    right: calc(3vw + var(--safe-right));
+  }
+
+  .layer-footer {
+    left: calc(4vw + var(--safe-left));
+  }
+}
+
+@media (max-width: 900px) {
+  .s5-list {
+    bottom: calc(3.5vh + var(--safe-bottom));
+  }
+
+  .s4-content {
+    padding-bottom: var(--safe-bottom);
   }
 }
 
@@ -1626,15 +1758,11 @@ html, body {
 
   .ps6-logo { width: 26vw; }
 
-  /* SCREEN 8 */
+  /* SCREEN 8 — the grid above already sizes the cards off the track, so
+     there is nothing width-specific left to set here */
   .s8-copy {
     font-size: 9px;
     line-height: 1.6;
-  }
-
-  .s8-card {
-    width: 118px;
-    height: 178px;
   }
 
   /* SCREEN 4 */
@@ -1651,12 +1779,7 @@ html, body {
   .s4-tagline { font-size: 0.55rem; }
 }
 
-/* ==========================================================================
-   LANDSCAPE PHONE
-   Sections are ~400px tall here, so the vh-based vertical rhythm used
-   above collapses. Pull headings up, shrink type, drop the decorative
-   layers that have no room.
-   ========================================================================= */
+
 @media (max-width: 900px) and (orientation: landscape) {
 
   .typography-group h1,
@@ -1768,12 +1891,32 @@ html, body {
     font-size: clamp(22px, 4.5vw, 36px);
   }
 
-  .s8-carousel { bottom: 3vh; }
+  /* Landscape has no room for two rows — back to a single row of small
+     cards, undoing the portrait grid. */
+  .s8-carousel {
+    top: auto;
+    bottom: calc(3vh + var(--safe-bottom));
+    align-items: center;
+  }
+
+  .s8-track {
+    display: flex;
+    grid-auto-flow: initial;
+    grid-template-rows: initial;
+    grid-auto-columns: initial;
+    height: auto;
+    gap: 1.5vw;
+  }
 
   .s8-card {
     width: 100px;
     height: 132px;
+    padding: 0.25rem;
   }
+
+  /* small enough that the longest role still fits the two-line reserve */
+  .s8-name { font-size: 11px; }
+  .s8-role { font-size: 7.5px; }
 
   /* SCREEN 4 */
   .s4-heading { font-size: clamp(36px, 9vw, 64px); }
