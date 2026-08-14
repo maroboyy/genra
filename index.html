@@ -2,7 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover lets the page draw under the notch/Dynamic Island;
+       style.css pulls the safe-area insets back in via env(). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#030303" />
+  <meta name="color-scheme" content="dark" />
+  <!-- "Add to Home Screen" on iOS: run without Safari chrome, dark status bar -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="GENRA" />
+  <link rel="apple-touch-icon" href="asset/Page1/logo-small.png" />
   <title>GENRA ESPORTS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,12 +23,32 @@
 <body>
 
   <!-- LAYER 1: INTRO OVERLAY -->
+  <!--
+    INTRO VIDEOS
+
+    DESKTOP links live in the <source> tags.
+    MOBILE  links live in data-mobile-webm / data-mobile-mp4.
+    script.js swaps them in when the viewport is <= 768px. Edit paths here
+    only — nothing to change in the JS. Drop the data-mobile-* attributes
+    off a video to use its desktop file at every size.
+
+    !! SAFARI / iPHONE !!  iOS Safari cannot decode WebM. The .mp4 rows
+    are what actually plays on every iPhone, so both files must exist —
+    export each intro clip to H.264 .mp4 next to its .webm. Until the mp4s
+    are added, iPhones skip straight past the intro to the site (the
+    watchdog in script.js handles it) rather than hanging on black.
+  -->
   <div id="intro-overlay">
-    <video id="video-logo" autoplay muted playsinline preload="auto">
-      <source src="asset/logo_start.webm" type="video/webm" />
+    <video id="video-logo" autoplay muted playsinline webkit-playsinline
+           preload="auto" disablepictureinpicture
+           data-mobile-webm="asset/Comp.webm">
+      <source class="src-webm" src="asset/logo_start.webm" type="video/webm" />
+      <source class="src-mp4"  src="asset/logo_start.mp4"  type="video/mp4" />
     </video>
-    <video id="video-blur" muted playsinline preload="auto" class="hidden">
-      <source src="asset/intro_transiton.webm" type="video/webm" />
+    <video id="video-blur" muted playsinline webkit-playsinline
+           preload="auto" disablepictureinpicture class="hidden">
+      <source class="src-webm" src="asset/intro_transiton.webm" type="video/webm" />
+      <source class="src-mp4"  src="asset/intro_transiton.mp4"  type="video/mp4" />
     </video>
   </div>
 
@@ -39,7 +69,6 @@
       <a href="#staff" class="glass-pill text-pill">STAFF</a>
       <a href="#contact" class="glass-pill text-pill">CONTACT US</a>
     </div>
-    <a href="#" class="glass-circle icon-grid" aria-label="All Sections"></a>
     <button type="button" class="glass-circle icon-menu" id="mobile-menu-toggle" aria-label="Open Menu" aria-expanded="false"></button>
   </nav>
 
@@ -100,7 +129,7 @@
 
     <!-- ==================== SCREEN 2 ==================== -->
     <section class="section screen-2">
-      <a href="#" class="artwork-frame" id="genra-link" aria-label="Genra">
+      <a class="artwork-frame" id="genra-link" aria-label="Genra">
         <img src="asset/papyrus-frieze.png" alt="Egyptian Artwork" class="artwork-img" />
 
         <!-- HOVER MOUSE TRACKING OVERLAY -->
@@ -239,8 +268,11 @@
 
         <!-- VIDEO SHOWCASE BOX -->
         <div class="video-box-s7">
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="asset/Page7/showcase.webm" type="video/webm" />
+          <!-- mp4 only: showcase.webm was never exported, and the mp4 is
+               what iOS Safari needs anyway. Add a webm above the mp4 later
+               if you want the smaller file for Chrome. -->
+          <video autoplay muted loop playsinline webkit-playsinline
+                 preload="auto" disablepictureinpicture>
             <source src="asset/Page7/showcase.mp4" type="video/mp4" />
           </video>
         </div>
@@ -287,7 +319,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/TEST.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Yassin.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">MB</span>
                   </div>
 
@@ -304,8 +336,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Maroboy</h3>
-                <span class="s8-role">Founder &amp; Technical Specialist</span>
+                <h3 class="s8-name">YASSIN</h3>
+                <span class="s8-role">1/2 OF GENRA</span>
               </div>
             </div>
 
@@ -327,7 +359,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/tantawy.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Joe.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">T</span>
                   </div>
 
@@ -344,8 +376,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Tantawy</h3>
-                <span class="s8-role">Data Specialist</span>
+                <h3 class="s8-name">JOE</h3>
+                <span class="s8-role">1/2 OF GENRA</span>
               </div>
             </div>
 
@@ -367,7 +399,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/mahmoud.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">M</span>
                   </div>
 
@@ -384,8 +416,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Mahmoud</h3>
-                <span class="s8-role">Media &amp; PR Manager</span>
+                <h3 class="s8-name">ٍSonic</h3>
+                <span class="s8-role">HEAD OF STAFF OPERATIONS</span>
               </div>
             </div>
 
@@ -407,7 +439,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-4.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -424,8 +456,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Tournament Manager</span>
+                <h3 class="s8-name">Se3doo</h3>
+                <span class="s8-role">HEAD OF STAFF OPERATIONS</span>
               </div>
             </div>
 
@@ -447,7 +479,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-5.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Sweda.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -464,8 +496,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Broadcast Director</span>
+                <h3 class="s8-name">Sweda</h3>
+                <span class="s8-role">EVENT ORGANIZER</span>
               </div>
             </div>
 
@@ -487,7 +519,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-6.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -504,8 +536,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Community Manager</span>
+                <h3 class="s8-name">Raneem</h3>
+                <span class="s8-role">EVENT ORGANIZER</span>
               </div>
             </div>
 
@@ -527,7 +559,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-7.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -544,8 +576,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Event Coordinator</span>
+                <h3 class="s8-name">BERLIN</h3>
+                <span class="s8-role">EVENT ORGANIZER</span>
               </div>
             </div>
 
@@ -567,7 +599,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-8.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -584,8 +616,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Graphic Designer</span>
+                <h3 class="s8-name">Youssef</h3>
+                <span class="s8-role">EVENT ORGANIZER</span>
               </div>
             </div>
 
@@ -607,7 +639,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-9.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -624,8 +656,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Head of Scouting</span>
+                <h3 class="s8-name">Ghazi</h3>
+                <span class="s8-role">CONTENT CREATORS & ANALYST</span>
               </div>
             </div>
 
@@ -647,7 +679,7 @@
                   </svg>
 
                   <div class="s8-face-photo">
-                    <img src="asset/Page8/staff-10.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
+                    <img src="asset/Page1/logo-small.png" alt="" class="s8-photo" onerror="this.closest('.s8-face-photo').classList.add('no-photo')" />
                     <span class="s8-initials">NS</span>
                   </div>
 
@@ -664,8 +696,8 @@
                 </div>
               </div>
               <div class="s8-info">
-                <h3 class="s8-name">Name Surname</h3>
-                <span class="s8-role">Social Media Manager</span>
+                <h3 class="s8-name">Redzone</h3>
+                <span class="s8-role">CONTENT CREATORS & ANALYST</span>
               </div>
             </div>
           </div>
@@ -695,21 +727,31 @@
           <span class="text-gold">US</span>
         </h1>
 
+        <!-- ============================================================
+             SOCIAL MEDIA LINKS  <<<< EDIT THE href="" VALUES HERE
+             One <a> per icon. Replace each REPLACE_ME url with the real
+             profile. The labels below now match the icon each one uses.
+             ============================================================ -->
         <div class="s4-socials">
-          <a href="#" class="s4-icon" aria-label="LinkedIn">
-            <img src="asset/Page4/X.png" alt="LinkedIn" />
+          <!-- X / TWITTER -->
+          <a href="https://twitter.com/genraxesports/" class="s4-icon" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <img src="asset/Page4/X.png" alt="X" />
           </a>
-          <a href="#" class="s4-icon" aria-label="X">
-            <img src="asset/Page4/tiktok.png" alt="X" />
+          <!-- TIKTOK -->
+          <a href="https://www.tiktok.com/@genraagency" class="s4-icon" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+            <img src="asset/Page4/tiktok.png" alt="TikTok" />
           </a>
-          <a href="#" class="s4-icon" aria-label="Email">
+          <!-- EMAIL -->
+          <a href="mailto:REPLACE_ME@example.com" class="s4-icon" aria-label="Email">
             <img src="asset/Page4/gmail.png" alt="Email" />
           </a>
-          <a href="#" class="s4-icon" aria-label="Instagram">
+          <!-- INSTAGRAM -->
+          <a href="https://www.instagram.com/genraagency/" class="s4-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
             <img src="asset/Page4/insta.png" alt="Instagram" />
           </a>
-          <a href="#" class="s4-icon" aria-label="Snapchat">
-            <img src="asset/Page4/youtube.png" alt="Snapchat" />
+          <!-- YOUTUBE -->
+          <a href="https://www.youtube.com/@GENRAxESPORTS" class="s4-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+            <img src="asset/Page4/youtube.png" alt="YouTube" />
           </a>
         </div>
 
